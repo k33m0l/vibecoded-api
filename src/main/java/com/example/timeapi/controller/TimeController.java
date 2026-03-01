@@ -13,7 +13,7 @@ public class TimeController {
 
     private static final ZoneId DEFAULT_ZONE = ZoneId.of("Europe/Paris");
     private static final DateTimeFormatter FORMATTER =
-            DateTimeFormatter.ofPattern("dd/MM/yyyy'T'hh:mm (z)");
+            DateTimeFormatter.ofPattern("dd/MM/yyyy'T'HH:mm (z)");
 
     @GetMapping("/time")
     public String getTime(@RequestParam(required = false) String timezone) {
