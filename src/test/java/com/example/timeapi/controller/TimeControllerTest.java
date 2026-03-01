@@ -11,7 +11,7 @@ class TimeControllerTest {
     private final TimeController controller = new TimeController();
 
     private static final Pattern TIME_PATTERN =
-            Pattern.compile("\\d{2}/\\d{2}/\\d{4}T\\d{2}:\\d{2} \\([A-Z]{2,4}\)");
+            Pattern.compile("\\d{2}/\\d{2}/\\d{4}T\\d{2}:\\d{2} \\([A-Z]{2,4}\\)");
 
     @Test
     void testDefaultTimeZone() {
