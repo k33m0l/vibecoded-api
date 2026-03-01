@@ -8,9 +8,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.regex.Pattern;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -26,15 +26,13 @@ class TimeApiIntegrationTest {
     void testGetTimeDefault() throws Exception {
         mockMvc.perform(get("/time"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(result -> assertTrue(TIME_PATTERN.matcher(result).matches(),
-                        "Response does not match pattern: " + result)));
+                .andExpect(content().string(org.hamcrest.Matchers.matchesPattern(TIME_PATTERN.pattern())));
     }
 
     @Test
     void testGetTimeWithTimezone() throws Exception {
         mockMvc.perform(get("/time").param("timezone", "America/New_York"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(result -> assertTrue(TIME_PATTERN.matcher(result).matches(),
-                        "Response does not match pattern: " + result)));
+                .andExpect(content().string(org.hamcrest.Matchers.matchesPattern(TIME_PATTERN.pattern())));
     }
 }
